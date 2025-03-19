@@ -1,0 +1,219 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-03-19T15:15:11.573Z",
+    "end": "2025-03-19T15:15:13.826Z",
+    "duration": 2253,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "08bf6cbc-0641-4b69-a0ed-2648b64c23db",
+      "title": "",
+      "fullFile": "cypress/e2e/deckOfCards.cy.js",
+      "file": "cypress/e2e/deckOfCards.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+          "title": "Deck of Cards API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should create a new shuffled deck",
+              "fullTitle": "Deck of Cards API Should create a new shuffled deck",
+              "timedOut": null,
+              "duration": 665,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "deckOfCardPage.newDeck(true).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property(\"success\", true);\n  expect(response.body).to.have.property(\"deck_id\");\n  expect(response.body).to.have.property(\"remaining\", 52);\n  expect(response.body).to.have.property(\"shuffled\", true);\n  deckId = response.body.deck_id;\n});",
+              "err": {},
+              "uuid": "51048bbb-7a4a-4a61-9f7f-6ddde1194554",
+              "parentUUID": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should create a new shuffled deck with a specific value",
+              "fullTitle": "Deck of Cards API Should create a new shuffled deck with a specific value",
+              "timedOut": null,
+              "duration": 189,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const deckCount = 3;\ndeckOfCardPage.newDeck(true, deckCount).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property(\"success\", true);\n  expect(response.body).to.have.property(\"deck_id\");\n  expect(response.body).to.have.property(\"remaining\", 52 * deckCount);\n  expect(response.body).to.have.property(\"shuffled\", true);\n});",
+              "err": {},
+              "uuid": "0fb6d872-beb6-4259-8d1c-1da0f6dbfbea",
+              "parentUUID": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should create a brand New Deck",
+              "fullTitle": "Deck of Cards API Should create a brand New Deck",
+              "timedOut": null,
+              "duration": 175,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//It could be better and add ramdom cards\nconst cards = [\"AS\", \"2S\", \"KS\", \"AD\"];\ndeckOfCardPage.newDeck(true, null, cards).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property(\"success\", true);\n  expect(response.body).to.have.property(\"deck_id\");\n  expect(response.body).to.have.property(\"remaining\", cards.length);\n  expect(response.body).to.have.property(\"shuffled\", true);\n});",
+              "err": {},
+              "uuid": "67d9516d-b014-4b03-89f3-cb8a2129b45b",
+              "parentUUID": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should draw a selected amount of cards",
+              "fullTitle": "Deck of Cards API Should draw a selected amount of cards",
+              "timedOut": null,
+              "duration": 205,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const randomCount = faker.number.int({\n  min: 1,\n  max: 10\n});\ndeckOfCardPage.drawCards(deckId, randomCount).then(response => {\n  cy.verifyDrawResponse(response, randomCount, 52 - randomCount);\n});",
+              "err": {},
+              "uuid": "41f17a85-e53f-4dda-a5b0-0223b7cedf5f",
+              "parentUUID": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should draw a card without specifying the amount",
+              "fullTitle": "Deck of Cards API Should draw a card without specifying the amount",
+              "timedOut": null,
+              "duration": 362,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "deckOfCardPage.newDeck(true).then(deckResponse => {\n  const deckId = deckResponse.body.deck_id;\n  deckOfCardPage.drawCards(deckId).then(response => {\n    cy.verifyDrawResponse(response, 1, 51);\n  });\n});",
+              "err": {},
+              "uuid": "59f623ed-e3d0-4b1c-b120-d0a987601462",
+              "parentUUID": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should reshuffle the deck",
+              "fullTitle": "Deck of Cards API Should reshuffle the deck",
+              "timedOut": null,
+              "duration": 184,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "deckOfCardPage.reshuffleCards(deckId).then(response => {\n  cy.verifyPartialResponse(response, deckId);\n  expect(response.body.deck_id).to.eq(deckId);\n});",
+              "err": {},
+              "uuid": "4a27f9b4-f61d-4d30-8592-51e3b13cc939",
+              "parentUUID": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should reshuffle the deck with remaining",
+              "fullTitle": "Deck of Cards API Should reshuffle the deck with remaining",
+              "timedOut": null,
+              "duration": 351,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "deckOfCardPage.drawCards(deckId, 5).then(drawResponse => {\n  const remainingAfterDraw = drawResponse.body.remaining;\n  cy.log(`After drawing cards, ${remainingAfterDraw} cards remain in the deck`);\n  const randomRemaining = faker.datatype.boolean();\n  cy.log(`Testing with remaining=${randomRemaining}`);\n  deckOfCardPage.reshuffleCards(deckId, randomRemaining).then(response => {\n    cy.verifyPartialResponse(response, deckId);\n    if (randomRemaining === true) {\n      expect(response.body.remaining).to.eq(remainingAfterDraw);\n      cy.log(`Verified: remaining=true keeps the same number of cards: ${response.body.remaining}`);\n    } else {\n      expect(response.body.remaining).to.eq(52);\n      cy.log(`Verified: remaining=false returns all cards to deck: ${response.body.remaining}`);\n    }\n  });\n});\n// const randomRemaining = faker.datatype.boolean();\n// deckOfCardPage.reshuffleCards(deckId, randomRemaining).then((response) => {\n//   cy.verifyPartialResponse(response, deckId);\n//   expect(response.body.deck_id).to.eq(deckId);\n// });",
+              "err": {},
+              "uuid": "bea1a16e-c3b6-4bf4-972e-80a85dccc9b7",
+              "parentUUID": "7b31b36e-2189-4849-bd91-9919aa5258d8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "51048bbb-7a4a-4a61-9f7f-6ddde1194554",
+            "0fb6d872-beb6-4259-8d1c-1da0f6dbfbea",
+            "67d9516d-b014-4b03-89f3-cb8a2129b45b",
+            "41f17a85-e53f-4dda-a5b0-0223b7cedf5f",
+            "59f623ed-e3d0-4b1c-b120-d0a987601462",
+            "4a27f9b4-f61d-4d30-8592-51e3b13cc939",
+            "bea1a16e-c3b6-4bf4-972e-80a85dccc9b7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2131,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "html": true,
+        "overwrite": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

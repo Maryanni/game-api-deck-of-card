@@ -1,0 +1,31 @@
+{
+  "name": "game-api-deck-of-card",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maryanni/game-api-deck-of-card.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maryanni/game-api-deck-of-card/issues"
+  },
+  "homepage": "https://github.com/Maryanni/game-api-deck-of-card#readme",
+  "devDependencies": {
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "mochawesome": "^7.1.3"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.6.0"
+  }
+}
